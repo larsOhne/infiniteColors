@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Available colors</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    {% for elem in elements %}
+      <div class="element_container">
+        <h1>{{ elem["name"] }}</h1>
+        <div class="palette">
+          {% for color in elem["colors"] %}
+          <div class="color_container">
+              <div class="color_item" style="background-color: rgb({{color.rgb['r']}}, {{color.rgb['g']}}, {{color.rgb['b']}});"></div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endfor %}
+  </body>
+</html>
