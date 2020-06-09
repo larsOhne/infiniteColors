@@ -15,7 +15,7 @@ def generate_colors():
     saturation = 0.9
 
     # increment by which hue is incremented
-    increment = (1 + 5.**0.5)*0.5  # golden ratio
+    increment = (1 + 5.**0.5)*0.05  # golden ratio
 
     # all elements, the colors are generated for are read from text, separated by linebreaks
     with open("default.elems", "r") as input_file:
@@ -25,22 +25,66 @@ def generate_colors():
     # generate hues by incrementing for each element and use remainder 
     color_elements = []
     for i in range(0, len(elements)):
-        hue = increment*i % 1. 
+        hue = (0.5 + increment*i) % 1.  
 
         main_color = {
-            "name": "Accent 0",
+            "name": "Accent",
             "rgb": hsv_to_rgb(hue, saturation, brightness),
             "hex": ""
         }
+        colors = [main_color]
 
+        # dark accents
+        for j in range(1,3):
+            ad_b = brightness - j*0.2
+            sat_b = brightness - j*0.1
+            colors.append({
+            "name": f"Dark Accent {j}",
+            "rgb": hsv_to_rgb(hue, sat_b, ad_b),
+            "hex": ""
+        })
+
+        # light accents
+        for j in range(1,3):
+            ad_b = brightness + j*0.3
+            sat_b = brightness - j*0.1
+            colors.append({
+            "name": f"Light Accent {j}",
+            "rgb": hsv_to_rgb(hue, sat_b, ad_b),
+            "hex": ""
+        })
+
+        # complementary color
+        compl_hue = (hue + 0.5) % 1.
         compl_color = {
             "name": "Compl. Accent",
             "rgb": hsv_to_rgb((hue + 0.5) % 1., saturation, brightness)
         }
+        colors.append(compl_color)
 
-        colors = [main_color, compl_color]
+        
+        # Compl. dark accents
+        for j in range(1,2):
+            ad_b = brightness - j*0.2
+            sat_b = brightness - j*0.1
+            colors.append({
+            "name": f"Compl. Dark Accent {j}",
+            "rgb": hsv_to_rgb(compl_hue, sat_b, ad_b),
+            "hex": ""
+        })
+
+        # Compl. light accents
+        for j in range(1,2):
+            ad_b = brightness + j*0.3
+            sat_b = brightness - j*0.1
+            colors.append({
+            "name": f"Compl. Light Accent {j}",
+            "rgb": hsv_to_rgb(compl_hue, sat_b, ad_b),
+            "hex": ""
+        })
 
         c_elem = {
+            "id": i,
             "name": elements[i],
             "hue": hue,
             "sat": saturation,

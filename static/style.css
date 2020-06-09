@@ -32,3 +32,27 @@ h1
     min-width: 10vw;
     min-height: 10vw;
 }
+
+.header
+{   
+    display: flex;
+}
+
+.filler
+{
+    flex: auto 1;
+}
+
+.dl_link
+{
+    text-decoration: none;
+    padding: 0.5em;
+    background-color: #282828;
+    border-radius: 0.5em;
+    color: aliceblue;
+}
+
+.dl_link:hover
+{
+    color: cadetblue;
+}

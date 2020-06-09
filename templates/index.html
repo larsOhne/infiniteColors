@@ -8,13 +8,29 @@
     <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
+    <div id="add_form">
+      <form action="/create" method="post">
+        <h4>Add new element</h4>
+        <input type="text" name="name" id="name_input">
+        <button type="submit">Create</button>
+      </form>
+    </div>
     {% for elem in elements %}
       <div class="element_container">
-        <h1>{{ elem["name"] }}</h1>
+        <div class="header">
+          <h1>{{ elem["name"] }}</h1>
+          <div class="filler"></div>
+          <div class="buttons">
+            <a download href="/{{elem.id}}/colors.tex" class="dl_link">TeX</a>
+          </div>
+        </div>
         <div class="palette">
           {% for color in elem["colors"] %}
           <div class="color_container">
               <div class="color_item" style="background-color: rgb({{color.rgb['r']}}, {{color.rgb['g']}}, {{color.rgb['b']}});"></div>
+              <div>
+                <h5>{{color.name}}</h5>
+              </div>
           </div>
           {% endfor %}
 
