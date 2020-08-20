@@ -7,7 +7,8 @@ def hsv_to_rgb(hue, sat, bright):
     
     return {"r": int(r*255), "g": int(g*255), "b": int(b*255)}
 
-
+def constrain(val):
+    return max(0, min(1., val))
 
 def generate_colors():
     # specify brightness and saturation
@@ -15,7 +16,7 @@ def generate_colors():
     saturation = 0.9
 
     # increment by which hue is incremented
-    increment = (1 + 5.**0.5)*0.05  # golden ratio
+    increment = (1 + 5.**0.5)*0.025  # golden ratio
 
     # all elements, the colors are generated for are read from text, separated by linebreaks
     with open("default.elems", "r") as input_file:
@@ -36,8 +37,8 @@ def generate_colors():
 
         # dark accents
         for j in range(1,3):
-            ad_b = brightness - j*0.2
-            sat_b = brightness - j*0.1
+            ad_b = constrain(brightness - j*0.2)
+            sat_b = constrain(saturation - j*0.1)
             colors.append({
             "name": f"Dark Accent {j}",
             "rgb": hsv_to_rgb(hue, sat_b, ad_b),
@@ -46,8 +47,8 @@ def generate_colors():
 
         # light accents
         for j in range(1,3):
-            ad_b = brightness + j*0.3
-            sat_b = brightness - j*0.1
+            ad_b = constrain(brightness + j*0.3)
+            sat_b = constrain(saturation - j*0.1)
             colors.append({
             "name": f"Light Accent {j}",
             "rgb": hsv_to_rgb(hue, sat_b, ad_b),
@@ -65,8 +66,8 @@ def generate_colors():
         
         # Compl. dark accents
         for j in range(1,2):
-            ad_b = brightness - j*0.2
-            sat_b = brightness - j*0.1
+            ad_b = constrain(brightness - j*0.2)
+            sat_b = constrain(saturation - j*0.1)
             colors.append({
             "name": f"Compl. Dark Accent {j}",
             "rgb": hsv_to_rgb(compl_hue, sat_b, ad_b),
@@ -75,8 +76,8 @@ def generate_colors():
 
         # Compl. light accents
         for j in range(1,2):
-            ad_b = brightness + j*0.3
-            sat_b = brightness - j*0.1
+            ad_b = constrain(brightness + j*0.3)
+            sat_b = constrain(saturation - j*0.1)
             colors.append({
             "name": f"Compl. Light Accent {j}",
             "rgb": hsv_to_rgb(compl_hue, sat_b, ad_b),
