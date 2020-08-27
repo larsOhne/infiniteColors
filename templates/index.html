@@ -27,7 +27,15 @@
         <div class="palette">
           {% for color in elem["colors"] %}
           <div class="color_container">
-              <div class="color_item" style="background-color: rgb({{color.rgb['r']}}, {{color.rgb['g']}}, {{color.rgb['b']}});"></div>
+              <div class="color_item" style="background-color: rgb({{color.rgb['r']}}, {{color.rgb['g']}}, {{color.rgb['b']}});">
+                <div class="filler"></div>
+                <div class="color_specs">
+                  <span>RGB: {{color.rgb['r']}}, {{color.rgb['g']}}, {{color.rgb['b']}}</span>
+                  <span>Hex: {{'#{:02x}{:02x}{:02x}'.format(color.rgb['r'], color.rgb['g'] , color.rgb['b'] )}}</span>
+
+                </div>
+                <div class="filler"></div>
+              </div>
               <div>
                 <h5>{{color.name}}</h5>
               </div>
