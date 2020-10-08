@@ -29,8 +29,8 @@ h1
 
 .color_item
 {
-    min-width: 10vw;
-    min-height: 10vw;
+    width: 7vw;
+    height: 7vw;
     display: flex;
     flex-direction: column;
 }
@@ -61,6 +61,7 @@ h1
 
 .color_specs{
     flex: auto 0;
+    font-size: small;
 }
 
 .color_specs span

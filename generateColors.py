@@ -53,7 +53,14 @@ def generate_colors():
             "name": f"Light Accent {j}",
             "rgb": hsv_to_rgb(hue, sat_b, ad_b),
             "hex": ""
-        })
+            })
+
+        # background accents
+        colors.append({
+            "name": "Light Background",
+            "rgb": hsv_to_rgb(hue, 0.25, 1),
+            "hex": ""
+            })
 
         # complementary color
         compl_hue = (hue + 0.5) % 1.
@@ -83,6 +90,13 @@ def generate_colors():
             "rgb": hsv_to_rgb(compl_hue, sat_b, ad_b),
             "hex": ""
         })
+
+        
+        colors.append({
+            "name": "Light Complement Background",
+            "rgb": hsv_to_rgb(compl_hue, 0.25, 1),
+            "hex": ""
+            })
 
         c_elem = {
             "id": i,
