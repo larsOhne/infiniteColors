@@ -126,3 +126,5 @@ dmypy.json
 *.elems
 default.elems
 test.py
+default.elems
+*.elems
